@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<extensions xmlns="http://www.demandware.com/xml/bmmodules/2007-12-11" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.demandware.com/xml/bmmodules/2007-12-11 bmext.xsd">
+    <menuitem id="SearchProduct" position="77489" site="true">
+        <name xml:lang="x-default">Product Update Utility</name>
+        <short_description xml:lang="x-default">
+            Update product locale related details 
+        </short_description>
+        <icon>icons/star_yellow_add.gif</icon>
+    </menuitem>
+<!-- 
+    <menuaction id="paymentgateway_admin02" menupath="PaymentGateway" position="20" site="true">
+        <name xml:lang="x-default">Test Credentials</name>
+        <short_description xml:lang="x-default">Test http credentials</short_description>
+        <description xml:lang="x-default">
+            Test http user / password for all payment methods
+        </description>
+        <exec pipeline="PaymentGateway" node="HttpAccessOverview"/>
+        <sub-pipelines>
+            <pipeline name="PaymentGateway-HttpAccessOverview" />
+            <pipeline name="PaymentGateway-HttpAccessTest" />
+        </sub-pipelines>
+        <parameters>
+            <parameter name="menuname" value="Test Credentials"/>
+            <parameter name="mainmenuname" value="PaymentGateway"/>
+        </parameters>
+        <icon>icons/star_yellow_new.gif</icon>
+    </menuaction> -->
+    <menuaction id="SearchProduct_admin03" menupath="SearchProduct" position="30" site="true">
+        <name xml:lang="x-default">Product Locale Properties</name>
+        <short_description xml:lang="x-default">Product Locale Properties</short_description>
+        <description xml:lang="x-default">
+            Product Locale Properties
+        </description>
+        <exec pipeline="Product_locale_utility" node="Show"/>
+        <sub-pipelines>
+            <pipeline name="Product_locale_utility-GetFormData" />
+            <pipeline name="Product_locale_utility-GetAttributes" />
+        </sub-pipelines>
+        <!-- <parameters>
+            <parameter name="menuname" value="Product Locale Properties"/>
+            <parameter name="mainmenuname" value="PaymentGateway"/>
+        </parameters> -->
+        <icon>icons/star_yellow_new.gif</icon>
+    </menuaction>
+</extensions>
