@@ -5,15 +5,18 @@
 <isdecorate template="application/MenuFrame">
     <link rel="stylesheet" type="text/css" href="${URLUtils.staticURL('/css/index.css')}" />
     <link rel="stylesheet" type="text/css" href="${URLUtils.staticURL('/css/virtual-select.min.css')}" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
     <link rel="stylesheet" type="text/css" href="${URLUtils.staticURL('/css/custom.css')}" />
 
-    <input type="text" name="SiteIds" class="SiteIds" id="SiteIds" value="${pdict.SiteIds}" style="visibility: hidden;">
-    <div class="row">
+    <input type="text" name="SiteIds" class="SiteIds" id="SiteIds" value="${pdict.SiteIds}"
+        style="visibility: hidden;" />
+    <div class="row check_catalog" data-action="${URLUtils.https('Product_locale_utility-CheckCatalog')}">
         <div class="searchbar text-center" data-action="${URLUtils.https('Product_locale_utility-GetFormData')}">
             <h1 class="mb-3"> ${Resource.msg('label.ProductID', 'locale', null)} </h1>
             <div class="d-flex justify-content-around align-items-center mb-5 search_ids">
@@ -27,64 +30,73 @@
         </div>
     </div>
     <div id="data_selected" class="row mb-5 d-none">
-        
-            <div class="col-md-3">
-                <select id="productselect" multiple name="product-select" placeholder="Select Product"
-                    data-search="false" data-silent-initial-value-set="true">
-                    <option value="Select">Select</option>
-                </select>
-            </div>
-            <div class="col-md-3">
-                <select id="siteselect" multiple name="site-select" placeholder="Select Site" data-search="false"
-                    data-silent-initial-value-set="true">
-                    <option value="Select">Select</option>
-                </select>
-            </div>
-            <div class="col-md-3">
-                <select id="attributeselect" multiple name="attribute-select" placeholder="Select Attribute"
-                    data-search="false" data-silent-initial-value-set="true">
-                    <option value="Select">Select</option>
-                </select>
-            </div>
-       
+
+        <div class="col-md-2">
+            <input type="text" class="form-control catalogId" id="catalogId" name="catalogId" value=""
+                placeholder="Enter catalog Id" data-attr="1" />
+        </div>
+        <div class="col-md-2">
+            <select id="productselect" multiple name="product-select" placeholder="Select Product" data-search="false"
+                data-silent-initial-value-set="true">
+                <option value="Select">Select</option>
+            </select>
+        </div>
+        <div class="col-md-2">
+            <select id="siteselect" multiple name="site-select" placeholder="Select Site" data-search="false"
+                data-silent-initial-value-set="true">
+                <option value="Select">Select</option>
+            </select>
+        </div>
+        <div class="col-md-2">
+            <select id="attributeselect" multiple name="attribute-select" placeholder="Select Attribute"
+                data-search="false" data-silent-initial-value-set="true">
+                <option value="Select">Select</option>
+            </select>
+        </div>
+
 
         <!--modal-->
+
+
         <div id="popup" class="modal-box">
 
             <a href="#" class="js-modal-close close">×</a>
             <h3>Select Attributes</h3>
 
             <div class="modal-body">
-                <div class="ids_selected">
-                    <input type="text" value="" readonly />
+                <div class="mb-4 ids_selected">
+                    <label for="popup_input_value">${Resource.msg('label.ProductIDs', 'locale', null)}:</label>
+                    <input type="text" class="popup_input" value="" readonly />
                 </div>
-                <br>
-                
-                <select id="attr_selected">
-                        
-                </select>
-
-                <br>
-                <div class="attr_values">
-
+                <div class="mb-4 popup_select">
+                    <label for="attribute_select">${Resource.msg('label.Attributes', 'locale', null)}:</label>
+                    <select id="attr_selected" onchange="selectValue();"></select>
                 </div>
+                <div class="popup_select">
+                    <label for="attribute_value">${Resource.msg('label.AttributesValue', 'locale', null)}:</label>
+                    <select id="attr_values"></select>
+                </div>
+
+
             </div>
             <footer>
-                <a href="#" class="js-modal-close btn btn-outline-primary" onclick="SubmitData();">Submit</a>
+                <a href="#" class="js-modal-close btn btn-outline-primary"
+                    onclick="SubmitData();">${Resource.msg('button.Submit', 'locale', null)}</a>
             </footer>
         </div>
-        <a class=" col-md-3 js-open-modal btn btn-primary edit-selected" href="#" data-modal-id="popup"
-          onclick="getselectedAttr();"  > ${Resource.msg('button.edit', 'locale', null)} </a>
 
+        <a class="col-md-3 js-open-modal btn btn-primary edit-selected" href="#" data-modal-id="popup"
+            onclick="getselectedAttr();"> ${Resource.msg('button.edit', 'locale', null)}
+        </a>
 
     </div>
     <table id="example" class="display" width="100%">
         <thead>
             <tr>
-                <th>Product_ID</th>
-                <th>Site_ID</th>
-                <th>Attributes</th>
-                <th>Value</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -98,10 +110,15 @@
         </tbody>
     </table>
 
-    <select class="selectpicker"><option>Mustard</option><option>Ketchup</option><option>Barbecue</option></select>
+    <button data-action="${URLUtils.https('Product_locale_utility-SubmitData')}" type="button"
+        class="btn btn-primary submit-tabledata d-none" onclick="SubmitTableData();">
+        ${Resource.msg('button.Submit', 'locale', null)}
+    </button>
 
 </isdecorate>
-<iscomment> <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> </iscomment>
+<iscomment>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</iscomment>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>

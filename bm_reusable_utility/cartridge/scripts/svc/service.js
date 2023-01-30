@@ -51,7 +51,29 @@ function getAttributedefinitions() {
     return service;
 }
 
+function AttributesUpdate(){
+    var service = LocalServiceRegistry.createService('ocapi_job_automation', {
+        createRequest: function (svc, params) {
+            var url = 'https://'+ hostName +'/s/-/dw/data/v22_8/jobs/Attributes_update/executions'; 
+            svc = svc.setURL(url);
+            svc = svc.setRequestMethod('POST');
+            svc.addHeader('Content-Type', 'application/json');
+            svc.addHeader('Accept', 'application/json');
+            svc.addHeader('Authorization', params.Token);
+            return JSON.stringify(params.payload);
+        },
+        parseResponse: function (svc, response) {
+            return response;
+        },
+        filterLogMessage: function (msg) {
+            return msg;
+        }
+    });
+    return service;
+}
+
 module.exports = {
     createToken: createToken,
-    getAttributedefinitions: getAttributedefinitions
+    getAttributedefinitions: getAttributedefinitions,
+    AttributesUpdate:AttributesUpdate
 }

@@ -35,6 +35,10 @@
         <sub-pipelines>
             <pipeline name="Product_locale_utility-GetFormData" />
             <pipeline name="Product_locale_utility-GetAttributes" />
+            <pipeline name="Product_locale_utility-SubmitData" />
+            <pipeline name="Product_locale_utility-CheckCatalog" />
+
+
         </sub-pipelines>
         <!-- <parameters>
             <parameter name="menuname" value="Product Locale Properties"/>

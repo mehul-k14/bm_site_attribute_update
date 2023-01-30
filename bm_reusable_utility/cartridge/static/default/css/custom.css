@@ -1,3 +1,11 @@
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
+input:focus{
+	outline: 1px solid #0b5ed7;
+}
+
 .modal-box {
 	display: none;
 	position: absolute;
@@ -76,12 +84,49 @@ a.close:hover {
     color: #fff !important;
 }
 .search_ids{
-    width: 94.5%;
+	width: 100%;
+    margin-left: -3rem;
+}
+#attr_selected{
+	width: 15rem;
+	margin-left: 3.7rem;
+}
+#attr_values{
+	width: 15rem;
+	margin-left: 5.5rem;
 }
 #data_selected{
     align-items: center;
-    justify-content: center;
+	justify-content: space-evenly;
+    width: 98%;
 }
+.submit-tabledata{
+	float: right;
+	margin: 3%;
+}
+
+.modal-body {
+	display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: baseline;
+}
+
+.popup_input {
+	width: 35rem;
+	height: 2.2rem;
+	margin-left: 2.3rem;
+}
+
+.popup_select {
+	display: flex;
+	justify-content: space-evenly;
+	align-content: center;
+}
+.modal-body label{
+	font-weight: bold;
+}
+
 
 @media (min-width: 32em) {
 	.modal-box {
